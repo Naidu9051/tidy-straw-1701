@@ -1,0 +1,13 @@
+.DwnNav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 230px;
+    padding-right: 230px;
+}
+
+Button{
+    border: none;
+    height: 37px;
+    width: 90px;
+}
