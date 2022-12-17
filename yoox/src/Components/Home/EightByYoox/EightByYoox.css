@@ -1,0 +1,47 @@
+.card{
+    /* border: 1px solid black; */
+    overflow: hidden;
+    border-radius: 8px;
+    height: 450px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+    background-color: white;
+ 
+    
+}
+.eightbyyoox{
+    width: 80% ;
+    margin: 0 auto;
+    position: absolute;
+    width: 300px;
+    bottom: 25%;
+    right: 2%;
+    margin-top: 50px;
+ 
+
+}
+.slick-slide >div {
+    margin: 0 10px;
+}
+
+.slick-list {
+    margin: 0 -10px;
+}
+.card-top{
+    height: 95%;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-top > img{
+    width: 80%;
+    height: 70%;
+    object-fit: cover;
+    /* border: 1px solid red; */
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+}
+.card-bottom{
+    justify-content: center;
+}
