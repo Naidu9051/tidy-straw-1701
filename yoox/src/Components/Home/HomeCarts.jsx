@@ -4,7 +4,7 @@ function HomeCarts() {
   return (
     <div style={{ display: "flex", gap: "30px", marginTop: "100px" }}>
       <div style={{ marginTop: "30px", marginLeft: "10px", cursor: "pointer" }}>
-        <Image src="" />
+        <Image src="https://www.yoox.com/images/yoox80/banners/6825_5_BaumeMercier_Tris_W.png?634485886601286852#width=473&height=660" />
         <Text
           display="block"
           fontFamily="PlayfairDisplay,sansSerif"
@@ -13,7 +13,7 @@ function HomeCarts() {
           marginBottom="12px"
           marginTop="10px"
         >
-          HUGO
+          BAUME & MERCIER
         </Text>
         <Text
           display=" block"
@@ -21,13 +21,13 @@ function HomeCarts() {
           fontWeight="300"
           lineHeight="19px"
         >
-          Express yourself
+          The New Riviera Collecation 
         </Text>
       </div>
       <div style={{ cursor: "pointer" }}>
         <Image
-          height="650px"
-          src=""
+          height="550px"
+          src="https://www.yoox.com/images/yoox80/banners/6825_1_Boss_W_Tris.jpg?634485886601286852#width=473&height=560"
         />
 
         <Text
@@ -38,7 +38,7 @@ function HomeCarts() {
           marginBottom="12px"
           marginTop="10px"
         >
-          MONTEBLANK
+          BOSS
         </Text>
         <Text
           display=" block"
@@ -46,13 +46,13 @@ function HomeCarts() {
           fontWeight="300"
           lineHeight="19px"
         >
-          It's gifting season
+          Be your own BOSS
         </Text>
       </div>
       <div
         style={{ marginTop: "30px", marginRight: "10px", cursor: "pointer" }}
       >
-        <Image src="" />
+        <Image src="https://www.yoox.com/images/yoox80/banners/6825_6_Montblanc_W_Tris.jpg?634485886601286852#width=473&height=560" />
         <Text
           display="block"
           fontFamily="PlayfairDisplay,sansSerif"
@@ -61,7 +61,7 @@ function HomeCarts() {
           marginBottom="12px"
           marginTop="10px"
         >
-          FULRA
+          MONTBLANC
         </Text>
         <Text
           display=" block"
@@ -69,7 +69,7 @@ function HomeCarts() {
           fontWeight="300"
           lineHeight="19px"
         >
-          Autumn/Winter 2022 Collection
+          The New Gift Generation
         </Text>
       </div>
     </div>

@@ -4,6 +4,8 @@ import React from "react";
 import CustomerCare from "./CustomerCare";
 import { Button } from "@chakra-ui/react";
 import { UnlockIcon } from "@chakra-ui/icons";
+import { Link, useNavigate, useNavigation, NavLink } from "react-router-dom";
+import Register from "./Register";
 
 const Topnavbar = () => {
   return (
@@ -20,7 +22,7 @@ const Topnavbar = () => {
           borderBottom: "1px solid #f4f4f4",
           width: "100%",
           fontFamily: "Montserrat,sans-serif",
-          marginBottom: "0px"
+          marginBottom: "0px",
         }}
       >
         <Country />
@@ -42,9 +44,10 @@ const Topnavbar = () => {
           mt={3}
           paddingBottom= "10px"
         >
+          <Link to="./Register">
           {" "}
-          <u style={{ marginLeft: "5px", marginTop: "5px" }}> 🖊️ Register</u>
-        </Button>
+          <u style={{ marginLeft: "5px", marginTop: "5px" }} > 🖊️ Register</u>
+          </Link></Button>
 
         <Button
           marginRight="50px"
@@ -60,11 +63,13 @@ const Topnavbar = () => {
           width={"100px"}
           size={2}
           mt={3}
-          paddingBottom= "10px"
+          paddingBottom="10px"
         >
+          <Link to="/login">
           {" "}
           <UnlockIcon />{" "}
           <u style={{ marginLeft: "5px", marginTop: "5px" }}>Login</u>
+          </Link>
         </Button>
       </div>
     </>

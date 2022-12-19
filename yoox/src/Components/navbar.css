@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Jost", sans-serif;
+  position:"sticky"
 }
 
 html {
@@ -33,6 +34,7 @@ li {
   grid-template-columns: 8rem 1fr 2fr 2fr 50rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  position: "fixed";
 }
 
 .logo {
@@ -40,6 +42,7 @@ li {
     margin-top: 2rem;
     width: 15rem;
     margin-left: 5rem;
+    position:"sticky"
 }
 
 .menu-link {
@@ -54,6 +57,7 @@ li {
   align-items: center;
   margin-right: 15rem;
   grid-column: 2/4;
+  position:"sticky"
 }
 
 .social-media {
@@ -65,6 +69,7 @@ li {
   display: grid;
   grid-template-columns: 3fr repeat(3, 1fr);
   align-items: center;
+  position:"sticky"
 }
 
 .nav-icons ul li {

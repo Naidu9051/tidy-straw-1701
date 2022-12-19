@@ -1,201 +1,101 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
-import {
-  Stack,
-  Button,
-  Text,
-  Link,
-  Image,
-  Input,
-  Checkbox,
-  CheckboxGroup,
-} from "@chakra-ui/react";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { AuthContext } from "../../src/AuthContest/AuthContest";
+
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { loginUser, authState } = useContext(AuthContext);
-  const navigate = useNavigate();
+
+  const { loginUser } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    fetch("https://reqres.in/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.token) {
-          loginUser(res.token);
-          alert("Login Successful");
-          navigate("/");
-        }
+    if (email !== "" && password !== "") {
+      fetch("https://reqres.in/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.token) {
+            loginUser(res.token);
+            navigate("/");
+          }
+        })
+        .catch((err) => {});
+    }
   };
+
   return (
-    <div>
-      <Stack>
-        <Text
-          fontFamily="Montserrat,sansSerif"
-          fontWeight="700"
-          fontSize="1.125rem"
-          marginBlockStart="0.83em"
-          marginBlockEnd="0.83em"
-          wordBreak="break-word"
-        >
-          {" "}
-          MYTRENDZ
-        </Text>
-        <Text
-          marginBottom="10px"
-          fontWeight="500"
-          fontFamily="Montserrat,sansSerif"
-          fontSize="0.825rem"
-        >
-          Login
-        </Text>
-
-        <Text fontFamily="Montserrat,sansSerif">
-          LOGIN WITH YOUR SOCIAL MEDIA ACCOUNT
-        </Text>
-
-        <div
-          style={{
-            height: "46px",
-            margin: "auto",
-            marginTop: "30px",
-            textAlign: "center",
-            color: "white",
-            width: "400px",
-            background: "#3b5998",
-          }}
-        >
-          {" "}
-          <Link href="https://www.facebook.com">
-            {" "}
-            <Text fontSize="30px">f</Text>
-          </Link>
-        </div>
-        <div
-          style={{
-            height: "46px",
-            margin: "auto",
-            marginTop: "30px",
-            width: "400px",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "1px 1px 1px 1px",
-          }}
-        >
-          {" "}
-          <Link href="https://www.google.com">
-            {" "}
-            <Image
-              marginTop="10px"
-              marginLeft="47%"
-              src="https://www.yoox.com/media/yoox16/icons/google_24.png"
-            />
-          </Link>
-        </div>
-
-        <div
-          style={{
-            margin: "46px 0 8px",
-            width: "40%",
-            justifyContent: "center",
-            margin: "auto",
-            marginTop: "50px",
-            gap: "30px",
-          }}
-        >
-          <Text
-            fontSize=".875rem"
-            fontWeight="500"
-            fontFamily="Montserrat,sansSerif"
-          >
-            OR WITH YOUR EMAIL
-          </Text>
-          <Input
+    <div
+      style={{
+        width: "430px",
+        margin: "5vh auto",
+        padding: "2vh 3vw",
+        boxShadow:
+          "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}></h1>
+      <h1
+        style={{ fontSize: "32px", textAlign: "center", margin: "2vh 0 8vh 0" }}
+      >
+        Log In
+      </h1>
+      <form onSubmit={handleSubmit}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <label style={{ marginTop: "1vh" }}>Email</label>
+          <input
+            style={{ border: "1px solid", width: "80%", padding: "1vh" }}
             value={email}
-            type="email"
             onChange={(e) => setEmail(e.target.value)}
-            marginTop="20px"
-            placeholder="E-MAIL*"
-          />
-          <Input
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            marginTop="20px"
-            placeholder="PASSWORD*"
+            type="email"
+            placeholder="email"
           />
         </div>
-
-        <Text
-          fontSize=".875rem"
-          fontWeight="500"
-          fontFamily="Montserrat,sansSerif"
-          style={{ marginTop: "30px", marginRight: "270px" }}
-        >
-          Personalise your Shopping experience
-        </Text>
-
-        <div style={{ marginLeft: "30%" }}>
-          <CheckboxGroup
-            colorScheme="blackAlpha"
-            defaultValue={["naruto", "kakashi"]}
-          >
-            <Stack spacing={[1, 5]} direction={["column", "row"]}>
-              <Checkbox value="REMEMBER-ME">REMEMBER ME</Checkbox>
-            </Stack>
-          </CheckboxGroup>
-        </div>
-
-        <div style={{ marginTop: "30px", width: "40%", margin: "auto" }}>
-          <Button onClick={handleSubmit} marginTop={"30px"}>
-            LOGIN
-          </Button>
-        </div>
-
         <div
           style={{
-            width: "100%",
-            height: "100px",
-            backgroundColor: "#333",
-            marginTop: "80px",
-            color: "white",
-            textAlign: "center",
-            fontFamily: "Montserrat,sansSerif",
-            fontSize: ".778rem",
-            alignItems: "center",
-            alignContent: "center",
+            display: "flex",
+            justifyContent: "space-between",
+            margin: "2vh 0",
           }}
         >
-          <Text marginTop="40px">
-            POWERED BY YOOX NET-A-PORTER GROUP - COPYRIGHT © 2000-2022 YOOX
-            NET-A-PORTER GROUP S.P.A. - ALL RIGHTS RESERVED - SIAE LICENCE #
-            401/I/526
-          </Text>
-          <div
-            style={{
-              display: "flex",
-              gap: "40px",
-              justifyContent: "center",
-              marginTop: "40px",
-            }}
-          >
-            <Link>LEGAL AREA</Link>
-            <Link>PRIVACY POLICY</Link>
-          </div>
+          <label style={{ marginTop: "1vh" }}>Password</label>
+          <input
+            style={{ border: "1px solid", width: "80%", padding: "1vh" }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="password"
+          />
         </div>
-      </Stack>
+        <div>
+          <input
+            style={{
+              display: "block",
+              margin: "5vh auto",
+              width: "100%",
+              backgroundColor: "orange",
+              color: "black",
+              fontSize: "18px",
+              padding: "1.6vh 0",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+            type="submit"
+            value="SUBMIT"
+          />
+        </div>
+      </form>
+      <div style={{ textAlign: "center" }}>
+        <Link style={{ color: "black", textDecoration: "underline" }} to="/">
+          Go Back
+        </Link>
+      </div>
     </div>
   );
 }

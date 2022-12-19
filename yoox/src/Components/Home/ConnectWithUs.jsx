@@ -42,7 +42,7 @@ const ConnectWithUs = () => {
       <div
         style={{
           width: "100%",
-          height: "100px",
+          height: "300px",
           backgroundColor: "#333",
           color: "white",
           textAlign: "center",
