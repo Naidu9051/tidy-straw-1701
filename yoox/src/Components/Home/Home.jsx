@@ -1,25 +1,28 @@
 import ImageCard from "./ImageCard";
-import Designer from "./Designers"
-import NewArrivals from "../Home/NewArrivals/NewArrivals"
-import HomeCarts from "./HomeCarts"
-import OneOfAKind from "../Home/OneOfAKind/OneOfAKind"
-import EightByYoox from "../Home/EightByYoox/EightByYoox"
-import ConnectWithUs from "./ConnectWithUs"
-import FooterCards from "./FooterCards"
-import Footer from "./footer"
+import Designer from "./Designers";
+import NewArrival from "../Home/NewArrivals/NewArrivals";
+import HomeCarts from "./HomeCarts";
+import EightByYoox from "../Home/EightByYoox/EightByYoox";
+import FooterCards from "./FooterCards";
+import Footer from "./Footer/Footer";
+import Topnavbar from "../Topnav/Topnavbar";
+import DownNavbar from "../Lownav/DwnNavbar";
+import Navbar from "../Navbar";
+
 
 function Home() {
   return (
     <>
+      <Topnavbar />
+      <Navbar />
+      <DownNavbar />
       <ImageCard />
       <Designer />
-      <NewArrivals />
+      <NewArrival />
       <HomeCarts />
-      <OneOfAKind />
       <EightByYoox />
       <FooterCards />
       <Footer />
-      <ConnectWithUs />
     </>
   );
 }

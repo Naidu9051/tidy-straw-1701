@@ -24,17 +24,18 @@ function ImageCard() {
           width={"100%"}
           height="600px"
           cursor={"pointer"}
-          src=" "
+          src="https://www.yoox.com/images/yoox80/banners/6895_1_Genz_WM_Main.png?634485886601286852&impolicy=cropDefault&width=960&height=510"
         />
 
         <div
           style={{
-            width: "350px",
-            height: "120px",
+            width: "380px",
+            height: "150px",
             backgroundColor: "white",
             position: "absolute",
-            top: "12%",
+            top: "9%",
             right: "70%",
+            paddingLeft: "15px"
           }}
         >
           <Text
@@ -43,7 +44,7 @@ function ImageCard() {
             fontFamily="playfairDisplay,sansSerif"
             marginRight="120px"
           >
-            LIGHTS ON!
+            HERE COMES THE NIGHT
           </Text>
           <Text
             fontSize="14px"
@@ -51,7 +52,7 @@ function ImageCard() {
             marginRight="60px"
             marginTop="10px"
           >
-            Enter To Find The Perfect Present
+            Rock-inspired leather looks and daring details
           </Text>
           <Text
             fontWeight="bold"
@@ -61,7 +62,7 @@ function ImageCard() {
             marginRight="100px"
             marginTop="10px"
           >
-            <u>LET THE SHOW BEGIN</u>
+            <u>GET THE LOOK</u>
           </Text>
         </div>
 

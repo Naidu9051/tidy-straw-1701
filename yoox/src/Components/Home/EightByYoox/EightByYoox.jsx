@@ -103,7 +103,7 @@ function EightByYoox() {
           marginLeft="50px"
           width="80%"
           height="600px"
-          src=""
+          src="https://www.yoox.com/images/yoox80/banners/6833_3_8byYoox_Special_WM.png?634485886601286852#width=930&height=660"
         />
       </div>
       <div
@@ -127,7 +127,7 @@ function EightByYoox() {
           marginLeft="20px"
           marginTop="15px"
         >
-          8 BY TRENDZ
+          IT'S PARTY TIME!
         </Text>
         <Text
           display="block"
@@ -136,7 +136,7 @@ function EightByYoox() {
           fontFamily="PlayfairDisplay,sansSerif"
           marginLeft="20px"
         >
-          Create Your Look With The FW 22-23 Collection
+          8 by YOOX: Select this season's perfect party looks.
         </Text>
 
         <div
@@ -157,45 +157,6 @@ function EightByYoox() {
             <Link>DISCOVER MORE</Link>
           </div>
         </div>
-      </div>
-
-      <div className="eightbyyoox">
-        <Slider style={{ marginTop: "100px" }} {...settings}>
-          {data.map((el, id) => (
-            <div key={el.id} className="card">
-              <Link to={`product/${el.id}`}>
-                <div key={el.id} className="card-top">
-                  <img src={el.url} alt="product-image" />
-                  <Text
-                    marginTop="30px"
-                    fontFamily="Montserrat,sansSerif"
-                    fontSize="15px"
-                    lineHeight="15px"
-                    fontWeight="bold"
-                  >
-                    {el.brand}
-                  </Text>
-                  <Text
-                    fontSize="13px"
-                    marginTop="20px"
-                    fontFamily="Montserrat,sansSerif"
-                  >
-                    {el.title}
-                  </Text>
-                  <Text
-                    marginTop="10px"
-                    fontFamily="Montserrat,sansSerif"
-                    fontSize="15px"
-                    lineHeight="15px"
-                    fontWeight="bold"
-                  >
-                    $ {el.price}
-                  </Text>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </Slider>
       </div>
     </div>
   );
