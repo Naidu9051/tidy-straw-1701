@@ -1,102 +1,151 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate, useNavigation } from "react-router-dom";
-import { AuthContext } from "../../src/AuthContest/AuthContest";
+import React, { useContext, useState } from "react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
+  Button,
+  Input,
+} from "@chakra-ui/react";
 
-function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import style from "./nav.module.css";
+import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+import { useToast } from "@chakra-ui/react";
+import { AuthContext } from "../../Contexts/AuthContext";
 
-  const { loginUser } = useContext(AuthContext);
+const Login = () => {
+  const [loginUser, setloginUser] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (e) => {
+  const { state, HandleLoginContext, HandleLogoutContext } =
+    useContext(AuthContext);
+  const toastss = useToast();
+
+  console.log(state);
+
+  const handleChangeLogin = (e) => {
+    let { name, value } = e.target;
+    setloginUser({
+      ...loginUser,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = (e) => {
     e.preventDefault();
-    if (email !== "" && password !== "") {
-      fetch("https://reqres.in/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.token) {
-            loginUser(res.token);
-            navigate("/");
-          }
-        })
-        .catch((err) => {});
-    }
+
+    axios.get(`https://yoox-server.onrender.com/user`).then((res) => {
+      let flag = false;
+      for (let i = 0; i < res.data.length; i++) {
+        if (
+          loginUser.email === res.data[i].email &&
+          loginUser.password === res.data[i].password
+        ) {
+          flag = true;
+          HandleLoginContext(res.data[i].firstname);
+          toastss({
+            title: "Login Successful",
+            description: `Welcome ${res.data[i].firstname}`,
+            status: "success",
+            duration: 7000,
+            isClosable: true,
+            position: "top",
+          });
+          break;
+        }
+      }
+
+      if (flag == false) {
+        toastss({
+          title: "Login Fail",
+          description: `Please check your Login Crendiential`,
+          status: "success",
+          duration: 7000,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+      }
+    });
   };
 
   return (
-    <div
-      style={{
-        width: "430px",
-        margin: "5vh auto",
-        padding: "2vh 3vw",
-        boxShadow:
-          "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
-      }}
-    >
-      <h1 style={{ textAlign: "center" }}></h1>
-      <h1
-        style={{ fontSize: "32px", textAlign: "center", margin: "2vh 0 8vh 0" }}
-      >
-        Log In
-      </h1>
-      <form onSubmit={handleSubmit}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <label style={{ marginTop: "1vh" }}>Email</label>
-          <input
-            style={{ border: "1px solid", width: "80%", padding: "1vh" }}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="email"
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            margin: "2vh 0",
-          }}
-        >
-          <label style={{ marginTop: "1vh" }}>Password</label>
-          <input
-            style={{ border: "1px solid", width: "80%", padding: "1vh" }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="password"
-          />
-        </div>
-        <div>
-          <input
-            style={{
-              display: "block",
-              margin: "5vh auto",
-              width: "100%",
-              backgroundColor: "orange",
-              color: "black",
-              fontSize: "18px",
-              padding: "1.6vh 0",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-            type="submit"
-            value="SUBMIT"
-          />
-        </div>
-      </form>
-      <div style={{ textAlign: "center" }}>
-        <Link style={{ color: "black", textDecoration: "underline" }} to="/">
-          Go Back
-        </Link>
-      </div>
+    <div>
+      <Popover>
+        <PopoverTrigger>
+          <Button
+            mt="-3px"
+            w="20px"
+            size="sm"
+            bg="white"
+            fontSize="12px"
+            fontWeight="bolder"
+          >
+            Login
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent borderColor="blue.800">
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverHeader>Login</PopoverHeader>
+          <PopoverBody>
+            <div className={style.buttonsSocialDiv}>
+              <p>Login with</p>
+              <div className={style.googlebtnDivNav}>
+                <div>
+                  <Button w="140px" colorScheme="facebook">
+                    facebook
+                  </Button>
+                </div>
+                <div>
+                  <Button w="140px">
+                    <FcGoogle />
+                  </Button>
+                </div>
+              </div>
+              <p>or with your e-mail address</p>
+            </div>
+
+            <div className={style.LoginFormDiv}>
+              <form>
+                <div>
+                  <Input
+                    w="160px"
+                    type="email"
+                    name="email"
+                    placeholder="E-MAIL"
+                    onChange={handleChangeLogin}
+                    value={loginUser.email}
+                  />
+                </div>
+                <div>
+                  <Input
+                    w="160px"
+                    type="password"
+                    name="password"
+                    placeholder="PASSWORD"
+                    onChange={handleChangeLogin}
+                    value={loginUser.password}
+                  />
+                </div>
+                <div>
+                  <Button w="160px" type="submit" onClick={handleLogin}>
+                    LOGIN
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
     </div>
   );
-}
+};
+
 export default Login;

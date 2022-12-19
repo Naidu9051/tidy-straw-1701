@@ -1,13 +1,34 @@
 import "./topnavbar.css";
 import Country from "./Country";
-import React from "react";
+import React, { useContext } from "react";
 import CustomerCare from "./CustomerCare";
 import { Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import style from "./nav.module.css";
 import { UnlockIcon } from "@chakra-ui/icons";
-import { Link, useNavigate, useNavigation, NavLink } from "react-router-dom";
-import Register from "./Register";
+import { BsFillPencilFill } from "react-icons/bs";
+
+import { FaUserAlt } from "react-icons/fa";
+import Login from "./Login";
+import { useToast } from "@chakra-ui/react";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 const Topnavbar = () => {
+  const { state, HandleLoginContext, HandleLogoutContext } =
+    useContext(AuthContext);
+  const toastsss = useToast();
+
+  const handleLogoutAuth = () => {
+    HandleLogoutContext();
+    toastsss({
+      title: "Logout Successful",
+      description: ``,
+      status: "success",
+      duration: 7000,
+      isClosable: true,
+      position: "top",
+    });
+  };
   return (
     <>
       <div
@@ -28,49 +49,40 @@ const Topnavbar = () => {
         <Country />
         <CustomerCare />
 
-        <Button
-          marginRight="50px"
-          display="inline-block"
-          maxWidth=" 108px"
-          whiteSpace="nowrap"
-          _hover={{ bg: "blue.500", color: " white" }}
-          overflow="hidden"
-          fontWeight={"bold"}
-          textOverflow="ellipsis"
-          fontSize="12px"
-          background="white"
-          width={"100px"}
-          size={2}
-          mt={3}
-          paddingBottom= "10px"
-        >
-          <Link to="./Register">
-          {" "}
-          <u style={{ marginLeft: "5px", marginTop: "5px" }} > 🖊️ Register</u>
-          </Link></Button>
+        <div className={style.inbox2}>
+          {state.isAuth ? (
+            <div className={style.forIcon}>
+              <FaUserAlt />
+              <h2>MYOOX</h2>
+            </div>
+          ) : (
+            <div className={style.forIcon}>
+              <BsFillPencilFill />
+              <Link to="/register">REGISTER</Link>
+            </div>
+          )}
 
-        <Button
-          marginRight="50px"
-          display="inline-block"
-          maxWidth=" 108px"
-          whiteSpace="nowrap"
-          _hover={{ bg: "blue.500", color: " white" }}
-          overflow="hidden"
-          fontWeight={"bold"}
-          textOverflow="ellipsis"
-          fontSize="12px"
-          background="white"
-          width={"100px"}
-          size={2}
-          mt={3}
-          paddingBottom="10px"
-        >
-          <Link to="/login">
-          {" "}
-          <UnlockIcon />{" "}
-          <u style={{ marginLeft: "5px", marginTop: "5px" }}>Login</u>
-          </Link>
-        </Button>
+          {state.isAuth ? (
+            <div className={style.forIcon}>
+              <Button
+                onClick={handleLogoutAuth}
+                mt="-3px"
+                w="20px"
+                size="sm"
+                bg="white"
+                fontSize="12px"
+                fontWeight="bolder"
+              >
+                Login
+              </Button>
+            </div>
+          ) : (
+            <div className={style.forIcon}>
+              <UnlockIcon />
+              <Login />
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
